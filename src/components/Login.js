@@ -1,4 +1,5 @@
 import { useState } from "react";
+import inMemoryJWTManager from "../managers/inMemoryJWTManager";
 
 const Login = () => {
     const [loginInfo, setLoginInfo] = useState({});
@@ -14,8 +15,12 @@ const Login = () => {
             .then(resp => resp.json())
             .then(json => {
                 console.log(json)
-                // TO DO store the JWT token
+                if (!json.token) {
+                    throw Error()
+                }
+                inMemoryJWTManager.setToken(json.token)
             })
+            .catch(() => alert("Wrong email or password!"))
     }
 
     const handleLoginSubmit = (e) => {
