@@ -4,7 +4,6 @@ const Register = () => {
     const [registerInfo, setRegisterInfo] = useState({})
 
     const fetchPostInfo = () => {
-        console.log(registerInfo)
         fetch(`http://localhost:5000/register`, {
             method: "POST",
             body: JSON.stringify(registerInfo),
@@ -15,6 +14,7 @@ const Register = () => {
             .then(resp => resp.json())
             .then(json => {
                 console.log(json)
+                // TO DO store the JWT token
             })
     }
 
