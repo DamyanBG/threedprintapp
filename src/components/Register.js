@@ -1,7 +1,34 @@
 import { useState } from "react";
 
 const Register = () => {
-    const [registerInfo, setRegisterInfo] = useState()
+    const [registerInfo, setRegisterInfo] = useState({})
+
+    const fetchPostInfo = () => {
+        console.log(registerInfo)
+        fetch(`http://localhost:5000/register`, {
+            method: "POST",
+            body: JSON.stringify(registerInfo),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json)
+            })
+    }
+
+    const handleInfoChange = (e) => {
+        setRegisterInfo({
+            ...registerInfo,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmitInfo = (e) => {
+        e.preventDefault()
+        fetchPostInfo()
+    }
 
     return (
         <>
@@ -14,27 +41,32 @@ const Register = () => {
                     marginRight: "30%",
                     borderRadius: "6px"
                 }}
+                onSubmit={handleSubmitInfo}
             >
                 <div>
                     <label>First name</label>
                     <input 
                         type="text" 
-                        name="firstName"
+                        name="first_name"
                         style={{
                             marginLeft: "5px",
                             borderRadius: "5px"
                         }}
+                        value={registerInfo.first_name || ""}
+                        onChange={handleInfoChange}
                     />
                 </div>
                 <div>
                     <label>Last name</label>
                     <input 
                         type="text" 
-                        name="lastName"
+                        name="last_name"
                         style={{
                             marginLeft: "5px",
                             borderRadius: "5px"
                         }}
+                        value={registerInfo.last_name || ""}
+                        onChange={handleInfoChange}
                     />
                 </div>
                 <div>
@@ -46,6 +78,8 @@ const Register = () => {
                             marginLeft: "5px",
                             borderRadius: "5px"
                         }}
+                        value={registerInfo.phone || ""}
+                        onChange={handleInfoChange}
                     />
                 </div>
                 <div>
@@ -57,6 +91,8 @@ const Register = () => {
                             marginLeft: "5px",
                             borderRadius: "5px"
                         }}
+                        value={registerInfo.email || ""}
+                        onChange={handleInfoChange}
                     />
                 </div>
                 <div>
@@ -68,6 +104,8 @@ const Register = () => {
                             marginLeft: "5px",
                             borderRadius: "5px"
                         }}
+                        value={registerInfo.password || ""}
+                        onChange={handleInfoChange}
                     />
                 </div>
                 <button
