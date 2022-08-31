@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import Products from './components/Products';
+import ModeratorLogin from './components/ModeratorLogin';
 
 function About() {
   return (
@@ -27,12 +29,16 @@ function App() {
     <div>
       <Header/>
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="register" element={<Register />} />.
-          <Route path="login" element={<Login />} />
-        </Routes>
+        <div className="after-main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="register" element={<Register />} />.
+            <Route path="login" element={<Login />} />
+            <Route path="moderator/login" element={<Login />} />
+            <Route path="products" element={<Products />} />
+          </Routes>
+        </div>
       </main>
       <Footer/>
     </div>

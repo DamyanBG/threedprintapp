@@ -18,3 +18,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.after-main {
+  padding-top: 100px;
+}
