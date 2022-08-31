@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Products from './components/Products';
 import ModeratorLogin from './components/ModeratorLogin';
+import AdministratorLogin from './components/AdministratorLogin';
 
 function About() {
   return (
@@ -35,7 +36,8 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="register" element={<Register />} />.
             <Route path="login" element={<Login />} />
-            <Route path="moderator/login" element={<Login />} />
+            <Route path="moderator/login" element={<ModeratorLogin />} />
+            <Route path="admin/login" element={<AdministratorLogin />} />
             <Route path="products" element={<Products />} />
           </Routes>
         </div>
