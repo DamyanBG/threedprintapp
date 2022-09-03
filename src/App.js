@@ -9,6 +9,7 @@ import ModeratorLogin from './components/ModeratorLogin';
 import AdministratorLogin from './components/AdministratorLogin';
 import CreateProduct from './components/CreateProduct';
 import CreateWorker from './components/CreateWorker';
+import Container from 'react-bootstrap/esm/Container';
 
 function About() {
   return (
@@ -32,7 +33,7 @@ function App() {
     <div>
       <Header/>
       <main>
-        <div className="after-main">
+        <Container>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
@@ -44,7 +45,7 @@ function App() {
             <Route path="products" element={<Products />} />
             <Route path="create-product" element={<CreateProduct />} />
           </Routes>
-        </div>
+        </Container>
       </main>
       <Footer/>
     </div>
