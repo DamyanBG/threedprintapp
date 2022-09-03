@@ -6,7 +6,7 @@ const ModeratorLogin = () => {
     const history = useNavigate();
 
     const fetchLoginInfo = () => {
-        fetch(`http://localhost:5000/worker/login`, {
+        fetch(`http://localhost:5000/workers/login`, {
             method: "POST",
             body: JSON.stringify(loginInfo),
             headers: {
