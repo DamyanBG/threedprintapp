@@ -1,14 +1,16 @@
 import { useState } from "react";
 
-const CreateProduct = () => {
-    const token = localStorage.getItem('token')
-    const autorizationBody = `Bearer ${token}`
-    const [productInfo, setProductInfo] = useState({
-        productTitle: "",
+const initialProductInfoObject = {
+    productTitle: "",
         description: "",
         image: "",
         amount: ""
-    })
+}
+
+const CreateProduct = () => {
+    const token = localStorage.getItem('token')
+    const autorizationBody = `Bearer ${token}`
+    const [productInfo, setProductInfo] = useState(initialProductInfoObject)
 
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -32,11 +34,13 @@ const CreateProduct = () => {
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
+        const fileExtension = file?.name?.split(".")[1]
         const base64 = await convertToBase64(file);
         const goodBase64 = base64.split(",")[1]
         setProductInfo({
             ...productInfo,
-            image: goodBase64
+            image: goodBase64,
+            extension: fileExtension
         })
     }
 
@@ -47,7 +51,7 @@ const CreateProduct = () => {
             description: productInfo.description,
             amount: productInfo.amount,
             photo: productInfo.image,
-            photo_extension: "jpg"
+            photo_extension: productInfo.extension
         }
         fetch(`http://localhost:5000/workers/products`, {
             method: "POST",
@@ -59,8 +63,11 @@ const CreateProduct = () => {
         })
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
-            })
+                if (json.photo_url) {
+                    setProductInfo(initialProductInfoObject)
+                }
+             })
+            .catch(() => alert("Fetch error!"))
     }
 
     console.log(productInfo)

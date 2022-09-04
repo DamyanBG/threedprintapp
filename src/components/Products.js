@@ -23,25 +23,12 @@ const Products = () => {
 
     return (
         <div>
-            <h1>Products</h1>
+            <h1 className="pt-xl-5">Products</h1>
             {
                 products.length > 0 ? (
                     <Row>
                         {
                             products.map(pr => (
-                                // <div key={pr.pk}>
-                                //     <div className="list-inline-item border border-dark">
-                                //         <img
-                                //             src={pr.photo_url}
-                                //             alt="No-Image"
-                                //             style={{ width: "120px" }}
-                                //             onError={(e) => (e.target.onerror = null, e.target.src = noImage)}
-                                //         />
-                                //         <h4>{pr.title}</h4>
-                                //         <p>{pr.description}</p>
-                                //         <p>{pr.amount}</p>
-                                //     </div>
-                                // </div>
                                 <Col key={pr.pk} sm={12} md={6} lg={4} xl={3}>
                                     <Product product={pr} />
                                 </Col>
