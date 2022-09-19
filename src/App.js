@@ -3,20 +3,13 @@ import { Routes, Route, Link } from "react-router-dom"
 import Login from './components/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
-const Home = () => {
-  return (
-    <>
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
-    </>
-  );
-}
+import Home from './components/Home';
+import Products from './components/Products';
+import ModeratorLogin from './components/ModeratorLogin';
+import AdministratorLogin from './components/AdministratorLogin';
+import CreateProduct from './components/CreateProduct';
+import CreateWorker from './components/CreateWorker';
+import Container from 'react-bootstrap/esm/Container';
 
 function About() {
   return (
@@ -40,12 +33,19 @@ function App() {
     <div>
       <Header/>
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="register" element={<Register />} />.
-          <Route path="login" element={<Login />} />
-        </Routes>
+        <Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="register" element={<Register />} />.
+            <Route path="create-worker" element={<CreateWorker />} />.
+            <Route path="login" element={<Login />} />
+            <Route path="moderator/login" element={<ModeratorLogin />} />
+            <Route path="admin/login" element={<AdministratorLogin />} />
+            <Route path="products" element={<Products />} />
+            <Route path="create-product" element={<CreateProduct />} />
+          </Routes>
+        </Container>
       </main>
       <Footer/>
     </div>

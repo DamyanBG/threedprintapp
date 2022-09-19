@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const ModeratorLogin = () => {
     const [loginInfo, setLoginInfo] = useState({});
     const history = useNavigate();
 
     const fetchLoginInfo = () => {
-        fetch(`http://localhost:5000/login`, {
+        fetch(`http://localhost:5000/workers/login`, {
             method: "POST",
             body: JSON.stringify(loginInfo),
             headers: {
@@ -20,7 +20,7 @@ const Login = () => {
                     throw Error()
                 }
                 localStorage.setItem("token", json.token)
-                localStorage.setItem("role", "user")
+                localStorage.setItem("role", "moderator")
                 history("/")
             })
             .catch(() => alert("Wrong email or password!"))
@@ -72,4 +72,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default ModeratorLogin;
