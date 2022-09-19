@@ -82,6 +82,7 @@ const CreateProduct = () => {
                     </label>
                     <div className="col-sm-4">
                         <input
+                            data-testid="productTitle"
                             type="text" 
                             className="form-control" 
                             name="productTitle"
@@ -96,6 +97,7 @@ const CreateProduct = () => {
                     </label>
                     <div className="col-sm-4">
                         <input 
+                            data-testid="description"
                             type="text" 
                             className="form-control" 
                             name="description"
@@ -110,6 +112,7 @@ const CreateProduct = () => {
                     </label>
                     <div className="col-sm-4">
                         <input 
+                            data-testid="amount"
                             type="text" 
                             className="form-control" 
                             name="amount"
