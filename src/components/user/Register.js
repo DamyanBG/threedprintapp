@@ -16,6 +16,7 @@ const Register = () => {
                 console.log(json)
                 // TO DO store the JWT token
             })
+            .catch(() => alert("Can not register!"))
     }
 
     const handleInfoChange = (e) => {

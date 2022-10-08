@@ -1,6 +1,5 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import inMemoryJWTManager from "../managers/inMemoryJWTManager";
 
 const Header = () => {
     return (
@@ -31,11 +30,10 @@ const Header = () => {
                                 </LinkContainer>
                             </NavDropdown>
                             <Nav.Link href="/login"><i className="fa-solid fa-right-to-bracket"></i>Login</Nav.Link>
-                            {
-                                !inMemoryJWTManager.getToken() && (
-                                    <Nav.Link href="/register"><i className="fa-solid fa-user-plus"></i>Register</Nav.Link>
-                                )
-                            }
+                            
+                            <Nav.Link href="/register"><i className="fa-solid fa-user-plus"></i>Register</Nav.Link>
+                                
+                            
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
