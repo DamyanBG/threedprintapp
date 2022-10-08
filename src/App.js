@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Products from './components/Products';
-import ModeratorLogin from './components/ModeratorLogin';
+import ModeratorLogin from './components/user/ModeratorLogin';
 import AdministratorLogin from './components/AdministratorLogin';
 import CreateProduct from './components/CreateProduct';
 import CreateWorker from './components/CreateWorker';
