@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserProvider";
 
@@ -56,10 +56,10 @@ const Login = () => {
     };
 
     const handleChangeInfo = (e) => {
-        setLoginInfo({
-            ...loginInfo,
-            [e.target.name]: e.target.value,
-        });
+        setLoginInfo((previousInfo) => {
+            const newInfo = {...previousInfo, [e.target.name]: e.target.value}
+            return newInfo
+        })
     };
 
     const emailComponent = useMemo(() => (

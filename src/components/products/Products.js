@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserProvider";
 
 const Products = () => {
     const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const { user } = useContext(UserContext)
 
     useEffect(() => {
@@ -24,7 +24,12 @@ const Products = () => {
             .then(json => {
                 setProducts(json)
             })
+            .catch(() => alert("Can not find products!"))
             .finally(() => setLoading(false))
+    }
+
+    if (!user.token) {
+        return <div className="text-center display-4 pt-5">Please, login!</div>
     }
 
     if (loading) {
@@ -33,7 +38,7 @@ const Products = () => {
 
     return (
         <div>
-            <h1 className="pt-xl-5">Products</h1>
+            <h1 className="text-center pt-xl-5">Products</h1>
             {
                 products.length > 0 ? (
                     <Row>
