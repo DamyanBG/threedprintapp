@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserProvider";
 
@@ -32,7 +32,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const fetchLoginInfo = () => {
-        fetch(`http://localhost:5000/login`, {
+        fetch(`https://printing-service-back-end.onrender.com/login`, {
             method: "POST",
             body: JSON.stringify(loginInfo),
             headers: {
@@ -56,10 +56,10 @@ const Login = () => {
     };
 
     const handleChangeInfo = (e) => {
-        setLoginInfo({
-            ...loginInfo,
-            [e.target.name]: e.target.value,
-        });
+        setLoginInfo((previousInfo) => {
+            const newInfo = {...previousInfo, [e.target.name]: e.target.value}
+            return newInfo
+        })
     };
 
     const emailComponent = useMemo(() => (
