@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Row, Col } from 'react-bootstrap'
 import Product from "./Product";
-import { UserContext } from "../context/UserProvider";
+import { UserContext } from "../../context/UserProvider";
 
 const Products = () => {
     const [products, setProducts] = useState([])

@@ -4,11 +4,11 @@ import Login from './components/user/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-import Products from './components/Products';
+import Products from './components/products/Products';
 import ModeratorLogin from './components/user/ModeratorLogin';
-import AdministratorLogin from './components/AdministratorLogin';
-import CreateProduct from './components/CreateProduct';
-import CreateWorker from './components/CreateWorker';
+import AdministratorLogin from './components/user/AdministratorLogin';
+import CreateProduct from './components/products/CreateProduct';
+import CreateWorker from './components/user/CreateWorker';
 import Container from 'react-bootstrap/esm/Container';
 import { UserProvider } from './context/UserProvider';
 
