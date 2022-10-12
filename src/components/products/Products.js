@@ -1,29 +1,44 @@
-import { useEffect, useState } from "react";
-import noImage from "../public/no-image-available-image.jpg"
+import { useContext, useEffect, useState } from "react";
 import { Row, Col } from 'react-bootstrap'
 import Product from "./Product";
+import { UserContext } from "../../context/UserProvider";
 
 const Products = () => {
-    const token = localStorage.getItem('token')
-    const autorizationBody = `Bearer ${token}`
     const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+    const { user } = useContext(UserContext)
 
     useEffect(() => {
+        if (!user.token) return
+        fetchProducts()
+    }, [user])
+
+    const fetchProducts = () => {
+        setLoading(true)
         fetch(`http://localhost:5000/workers/products`, {
             headers: {
-                'Authorization': autorizationBody
+                'Authorization': `Bearer ${user.token}`
             }
         })
             .then(resp => resp.json())
             .then(json => {
-                console.log(json)
                 setProducts(json)
             })
-    }, [])
+            .catch(() => alert("Can not find products!"))
+            .finally(() => setLoading(false))
+    }
+
+    if (!user.token) {
+        return <div className="text-center display-4 pt-5">Please, login!</div>
+    }
+
+    if (loading) {
+        return <div className="text-center display-4 pt-5">LOADING</div>
+    }
 
     return (
         <div>
-            <h1 className="pt-xl-5">Products</h1>
+            <h1 className="text-center pt-xl-5">Products</h1>
             {
                 products.length > 0 ? (
                     <Row>
