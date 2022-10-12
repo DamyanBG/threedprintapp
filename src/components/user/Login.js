@@ -1,8 +1,8 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserProvider";
 
-const FieldComponent = React.memo(({ labelText, labelTestId, type, name, inputTestId, value, handleOnChange }) => {
+const FieldComponent = ({ labelText, labelTestId, type, name, inputTestId, value, handleOnChange }) => {
     console.log(`render ${labelText}`);
     return (
         <div>
@@ -10,7 +10,7 @@ const FieldComponent = React.memo(({ labelText, labelTestId, type, name, inputTe
             <input type={type} name={name} data-testid={inputTestId} value={value || ""} onChange={handleOnChange} />
         </div>
     );
-});
+};
 
 const ButtonComponent = React.memo(() => <button type="submit" data-testid="submitButton">Submit</button>);
 
@@ -25,6 +25,12 @@ const FormComponent = ({ handleOnSubmit, emailField, passwordField, formButton }
         </form>
     );
 };
+
+const TextCenter = ({children}) => (
+    <div className="text-center">
+        {children}
+    </div>
+)
 
 const Login = () => {
     const [loginInfo, setLoginInfo] = useState({});
@@ -87,7 +93,7 @@ const Login = () => {
     ), [loginInfo.password])
 
     return (
-        <div className="text-center">
+        <TextCenter>
             <HeaderComponent />
             <FormComponent
                 handleOnSubmit={handleLoginSubmit}
@@ -95,7 +101,7 @@ const Login = () => {
                 passwordField={passwordComponent}
                 formButton={<ButtonComponent />}
             />
-        </div>
+        </TextCenter>
     );
 };
 
