@@ -58,7 +58,7 @@ const UserCreate = ({ fetchURL, headers, setJson, fetchErrorMessage }) => {
                             marginRight: "30%",
                             borderRadius: "6px",
                         }}
-                        onSubmit={formik.onSubmit}
+                        onSubmit={formik.handleSubmit}
                     >
                         <div>
                             <label>First name</label>
